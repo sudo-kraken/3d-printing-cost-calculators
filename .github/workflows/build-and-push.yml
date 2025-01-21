@@ -1,10 +1,7 @@
-name: Build and Push Podman Image ARM64
+name: Build and Push Multi-Architecture Image
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
     branches:
       - main
 
@@ -16,16 +13,20 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Set up Podman
+      - name: Set up Podman and Buildx
         run: |
           sudo apt-get update
           sudo apt-get -y install podman buildah qemu-user-static
+          podman buildx create --name multiarch-builder --use
+          podman buildx inspect --bootstrap
 
       - name: Authenticate with GitHub Container Registry
         run: |
           echo "${{ secrets.GHCR_PAT }}" | podman login ghcr.io --username "${{ github.actor }}" --password-stdin
-          
-      - name: Build and Push Docker Image (AMD64)
+
+      - name: Build and Push Multi-Architecture Image
         run: |
-          podman build --arch arm64 -t ghcr.io/${{ github.actor }}/3d-print-calculators:latest-arm64 .
-          podman push ghcr.io/${{ github.actor }}/3d-print-calculators:latest-arm64
+          podman buildx build \
+            --platform linux/amd64,linux/arm64 \
+            -t ghcr.io/${{ github.actor }}/3d-print-calculators:latest \
+            --push .
