@@ -17,7 +17,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get -y install podman buildah qemu-user-static
-          podman buildx create --name multiarch-builder --use
+          podman buildx create
           podman buildx inspect --bootstrap
 
       - name: Authenticate with GitHub Container Registry
