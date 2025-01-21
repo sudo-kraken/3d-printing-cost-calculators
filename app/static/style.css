@@ -179,7 +179,8 @@ form input[type="number"] {
     row-gap: 30px; /* Add spacing between rows */
 }
 
-#fdm-simple-calculator-form .form-section {
+#fdm-simple-calculator-form,
+#resin-simple-calculator-form .form-section {
     background: #2E2E2E;
     padding: 15px;
     border-radius: 10px;
@@ -194,15 +195,6 @@ form input[type="number"] {
     grid-template-columns: 1fr 1fr; /* Two equal columns */
     gap: 20px; /* Adjust column gap */
     row-gap: 30px; /* Add spacing between rows */
-}
-
-#resin-simple-calculator-form .form-section {
-    background: #2E2E2E;
-    padding: 15px;
-    border-radius: 10px;
-    box-sizing: border-box;
-    margin: 0;
-    width: 100%; /* Ensure full width */
 }
 
 /* Results Card Styling */
@@ -247,7 +239,7 @@ form input[type="number"] {
     display: flex;
     gap: 20px;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: stretch;
 }
 
 .result-row .result-card {
