@@ -4,29 +4,36 @@ on:
   push:
     branches:
       - main
-
+  pull_request:
+    branches:
+      - main
 jobs:
-  build-and-push:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set up Podman and Buildx
-        run: |
-          sudo apt-get update
-          sudo apt-get -y install podman buildah qemu-user-static
-          podman buildx create
-          podman buildx inspect --bootstrap
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: linux/amd64,linux/arm64
 
-      - name: Authenticate with GitHub Container Registry
-        run: |
-          echo "${{ secrets.GHCR_PAT }}" | podman login ghcr.io --username "${{ github.actor }}" --password-stdin
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_PAT }}
 
       - name: Build and Push Multi-Architecture Image
-        run: |
-          podman buildx build \
-            --platform linux/amd64,linux/arm64 \
-            -t ghcr.io/${{ github.actor }}/3d-print-calculators:latest \
-            --push .
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/${{ github.actor }}/3d-print-calculators:latest
+          platforms: linux/amd64,linux/arm64
