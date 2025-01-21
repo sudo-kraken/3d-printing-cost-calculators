@@ -28,4 +28,4 @@ jobs:
       - name: Build and Push Docker Image (AMD64)
         run: |
           podman build --arch arm64 -t ghcr.io/${{ github.actor }}/3d-print-calculators:latest-arm64 .
-          podman push ghcr.io/${{ github.actor }}/3d-print-calculators:latest
+          podman push ghcr.io/${{ github.actor }}/3d-print-calculators:latest-arm64
