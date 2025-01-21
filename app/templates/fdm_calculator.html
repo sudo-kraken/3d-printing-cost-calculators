@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filament Print Calculator</title>
+    <link rel="icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/fdm_calculator.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="/static/logo.png" alt="Logo" class="logo">
+            <h1>Filament Print Calculator</h1>
+        </header>
+        <div class="button-group">
+            <a href="/" class="btn-dark">Back to Main Page</a>
+            <a href="/fdm-simple" class="btn-secondary">Switch to Simple Tool</a>
+        </div>
+
+        <!-- Inputs Card -->
+        <div class="form-card">
+            <h2 class="card-title">Inputs</h2>
+            <form id="filament-calculator-form">
+                <div class="form-row">
+                    <div class="form-section">
+                        <h3>Filament Costs</h3>
+                        <label for="filament_cost_per_kg">Filament Cost (£/kg):</label>
+                        <input type="number" id="filament_cost_per_kg" step="0.01" placeholder="25.00" required>
+                        <label for="filament_g_per_model">Filament Usage (g/model):</label>
+                        <input type="number" id="filament_g_per_model" step="0.01" placeholder="20" required>
+                        <label for="filament_waste_factor">Filament Waste Factor (%):</label>
+                        <input type="number" id="filament_waste_factor" step="0.1" placeholder="10" required>
+                    </div>
+                    <div class="form-section">
+                        <h3>Labour Costs</h3>
+                        <label for="labour_cost_ph">Labour Cost (£/hr):</label>
+                        <input type="number" id="labour_cost_ph" step="0.01" placeholder="20" required>
+                        <label for="setup_labour_mins">Setup Labour (mins):</label>
+                        <input type="number" id="setup_labour_mins" step="1" placeholder="5" required>
+                        <label for="finishing_labour_mins">Finishing Labour (mins/model):</label>
+                        <input type="number" id="finishing_labour_mins" step="1" placeholder="10" required>
+                        </div>
+                    <div class="form-section">
+                        <h3>Electricity Costs</h3>
+                        <label for="electricity_cost_kwh">Electricity Cost (£/kWh):</label>
+                        <input type="number" id="electricity_cost_kwh" step="0.01" placeholder="0.40" required>
+                        <label for="printer_wattage">Printer Wattage (W):</label>
+                        <input type="number" id="printer_wattage" step="1" placeholder="250" required>
+                        <label for="print_time_hours">Print Time (hours):</label>
+                        <input type="number" id="print_time_hours" step="0.01" placeholder="4" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-section">
+                        <h3>Other Costs</h3>
+                        <label for="packaging_cost">Packaging Cost (£/model):</label>
+                        <input type="number" id="packaging_cost" step="0.01" placeholder="0.30" required>
+                        <label for="shipping_cost">Shipping Cost (£/model):</label>
+                        <input type="number" id="shipping_cost" step="0.01" placeholder="2.00" required>
+                    </div>
+                    <div class="form-section">
+                        <h3>Batch Info</h3>
+                        <label for="batch_size">Batch Size (models):</label>
+                        <input type="number" id="batch_size" step="1" placeholder="10" required>
+                        <label for="failure_rate">Failure Rate (%):</label>
+                        <input type="number" id="failure_rate" step="0.1" placeholder="5" required>
+                        <label for="occupancy_charge_per_hour">Printer Occupancy Charge (£/hr):</label>
+                        <input type="number" id="occupancy_charge_per_hour" step="0.01" placeholder="2" required>
+                    </div>
+                    <div class="form-section">
+                        <h3>Profit Margin</h3>
+                        <label for="profit_margin">Profit Margin (%):</label>
+                        <input type="number" id="profit_margin" step="0.1" placeholder="50" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-calculate">Calculate</button>
+            </form>
+        </div>
+
+        <!-- Results Card -->
+        <div class="form-card">
+            <h2 class="card-title">Results</h2>
+
+            <!-- Costs Section -->
+            <div class="result-card">
+                <h3>Costs</h3>
+                <div class="result-card-entry">
+                    <label title="kWh Used = (Printer Wattage × Print Time in Hours) / 1000">kWh Used:</label>
+                    <span id="result-kwh-used" title="kWh Used = (Printer Wattage × Print Time in Hours) / 1000">0.00 kWh</span>
+                </div>
+                <div class="result-card-entry">
+                    <label title="Electricity Cost = kWh Used × Cost per kWh">Electricity:</label>
+                    <span id="result-electricity-cost" title="Electricity Cost = kWh Used × Cost per kWh">£0.00</span>
+                </div>
+                <div class="result-card-entry">
+                    <label title="Filament Cost = Filament Usage × Filament Cost per Kilogram">Filament:</label>
+                    <span id="result-filament-cost" title="Filament Cost = Filament Usage × Filament Cost per Kilogram">£0.00</span>
+                </div>
+                <div class="result-card-entry">
+                    <label title="Postage = (Packaging Cost + Shipping Cost) × Batch Size">Postage:</label>
+                    <span id="result-postage" title="Postage = (Packaging Cost + Shipping Cost) × Batch Size">£0.00</span>
+                </div>
+                <div class="result-card-entry">
+                    <label title="Labour Cost = Setup Labour Cost + (Finishing Labour Cost × Batch Size)">Labour:</label>
+                    <span id="result-labour-cost" title="Labour Cost = Setup Labour Cost + (Finishing Labour Cost × Batch Size)">£0.00</span>
+                </div>
+                <div class="result-card-entry">
+                    <label title="Printer Occupancy Charge = Occupancy Charge per Hour × Print Time in Hours">Printer Occupancy Charge:</label>
+                    <span id="result-occupancy-cost" title="Printer Occupancy Charge = Occupancy Charge per Hour × Print Time in Hours">£0.00</span>
+                </div>
+            </div>
+            
+            <!-- Pre Profit and Post Profit on the same row -->
+            <div class="result-row">
+                <div class="result-card">
+                    <h3>Pre Profit</h3>
+                    <div class="result-card-entry">
+                        <label title="Pre Profit Total Batch Cost = Total Costs (Filament, Labour, Electricity, Postage, and Occupancy) for the Batch">
+                            Total Batch Cost:
+                        </label>
+                        <span id="result-pre-profit-batch" title="Pre Profit Total Batch Cost = Total Costs (Filament, Labour, Electricity, Postage, and Occupancy) for the Batch">£0.00</span>
+                    </div>
+                    <div class="result-card-entry">
+                        <label title="Pre Profit Cost per Model = Pre Profit Total Batch Cost ÷ Number of Sellable Models">
+                            Cost per Model:
+                        </label>
+                        <span id="result-pre-profit-model" title="Pre Profit Cost per Model = Pre Profit Total Batch Cost ÷ Number of Sellable Models">£0.00</span>
+                    </div>
+                </div>
+                <div class="result-card">
+                    <h3>Post Profit</h3>
+                    <div class="result-card-entry">
+                        <label title="Post Profit Total Batch Cost = Pre Profit Total Batch Cost × (1 + Profit Margin)">
+                            Total Batch Cost:
+                        </label>
+                        <span id="result-post-profit-batch" title="Post Profit Total Batch Cost = Pre Profit Total Batch Cost × (1 + Profit Margin)">£0.00</span>
+                    </div>
+                    <div class="result-card-entry">
+                        <label title="Post Profit Cost per Model = Post Profit Total Batch Cost ÷ Number of Sellable Models">
+                            Cost per Model:
+                        </label>
+                        <span id="result-post-profit-model" title="Post Profit Cost per Model = Post Profit Total Batch Cost ÷ Number of Sellable Models">£0.00</span>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+</body>
+</html>

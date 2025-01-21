@@ -1,0 +1,443 @@
+/* General Styles for the Page */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #2E2E2E;
+    color: #FFFFFF;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header .logo {
+    width: 150px;
+    margin-bottom: 10px;
+}
+
+header h1 {
+    font-size: 2rem;
+    color: #358878;
+}
+
+/* Navigation Button Styles */
+a {
+    text-decoration: none;
+    font-size: 1rem;
+    margin: 10px 5px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #2B6F63;
+    color: #FFFFFF;
+    border: 1px solid #2B6F63;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #358878;
+}
+
+.btn-secondary {
+    background-color: #2B6F63;
+    color: #FFFFFF;
+    border: 1px solid #2B6F63;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px auto;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-secondary:hover {
+    background-color: #358878;
+}
+
+.btn-dark {
+    background-color: #3C3C3C;
+    color: #FFFFFF;
+    border: 1px solid #358878;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px auto;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-dark:hover {
+    background-color: #2B6F63;
+}
+
+.btn-calculate {
+    width: 200px;
+    text-align: center;
+    background-color: #2B6F63;
+    color: #FFFFFF;
+    border: 1px solid #2B6F63;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    display: block;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-calculate:hover {
+    background-color: #358878;
+}
+
+/* Button Group Styling */
+.button-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Form Styles */
+.form-card {
+    background-color: #3C3C3C;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.card-title {
+    text-align: center;
+    color: #358878;
+    font-size: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    row-gap: 30px;
+}
+
+.form-section {
+    background: #2E2E2E;
+    padding: 15px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #358878;
+    border-radius: 5px;
+    background-color: #2E2E2E;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+/* Scoped styling for the simple calculator */
+#fdm-simple-calculator-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 20px; /* Adjust column gap */
+    row-gap: 30px; /* Add spacing between rows */
+}
+
+#fdm-simple-calculator-form .form-section {
+    background: #2E2E2E;
+    padding: 15px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin: 0;
+    width: 100%; /* Ensure full width */
+}
+
+/* Scoped styling for the resin simple calculator */
+#resin-simple-calculator-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 20px; /* Adjust column gap */
+    row-gap: 30px; /* Add spacing between rows */
+}
+
+#resin-simple-calculator-form .form-section {
+    background: #2E2E2E;
+    padding: 15px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin: 0;
+    width: 100%; /* Ensure full width */
+}
+
+/* Results Card Styling */
+.result-card {
+    background-color: #2E2E2E;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.result-card h3 {
+    font-size: 1.5rem;
+    color: #358878;
+    margin-bottom: 15px;
+}
+
+.result-card-entry {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #444;
+}
+
+.result-card-entry label {
+    font-weight: bold;
+    color: #FFFFFF;
+    flex: 1;
+}
+
+.result-card-entry span {
+    font-size: 1rem;
+    color: #FFFFFF;
+    text-align: right;
+}
+
+/* Results Row */
+.result-row {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.result-row .result-card {
+    flex: 1;
+}
+
+/* Scoped styles for the calculator container */
+@import url('https://fonts.googleapis.com/css?family=Raleway:400');
+
+/* General styling */
+body.index-page { 
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    background: #131313;
+    color: #fff;
+    font-family: 'Raleway', normal;
+}
+
+/* Logo styling */
+.logo {
+    display: block;
+    max-width: 150px;
+    margin: 0 auto 10px auto; /* Add spacing between logo and title */
+}
+
+/* Title styling with glitch effect */
+#glitch-title {
+    position: relative;
+    font-size: 96px;
+    letter-spacing: -7px;
+    animation: glitch 1s linear infinite;
+    text-align: center;
+  }
+
+  @keyframes glitch {
+    2%, 64% {
+      transform: translate(2px, 0) skew(0deg);
+    }
+    4%, 60% {
+      transform: translate(-2px, 0) skew(0deg);
+    }
+    62% {
+      transform: translate(0, 0) skew(5deg);
+    }
+  }
+  
+  #glitch-title:before,
+  #glitch-title:after {
+    content: attr(title);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  #glitch-title:before {
+    animation: glitchTop 1s linear infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+    color: #ffffff; /* Add a distinct color for the top glitch */
+  }
+  
+  @keyframes glitchTop {
+    2%, 64% {
+      transform: translate(2px, -2px);
+    }
+    4%, 60% {
+      transform: translate(-2px, 2px);
+    }
+    62% {
+      transform: translate(13px, -1px) skew(-13deg);
+    }
+  }
+  
+  #glitch-title:after {
+    animation: glitchBottom 1.5s linear infinite;
+    clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+    -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+    color: #ffffff; /* Add a distinct color for the bottom glitch */
+  }
+  
+  @keyframes glitchBottom {
+    2%, 64% {
+      transform: translate(-2px, 0);
+    }
+    4%, 60% {
+      transform: translate(2px, 0);
+    }
+    62% {
+      transform: translate(-22px, 5px) skew(21deg);
+    }
+  }
+
+/* Card styling */
+.calculator-container .card {
+    background-color: #3c3c3c;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+/* Card title styling */
+.calculator-container .card-title {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #edf2f4;
+    text-align: center;
+}
+
+/* Calculator group styling */
+.calculator-group {
+    background-color: #2e2e2e;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.calculator-group .group-title {
+    font-size: 1.5em;
+    color: #edf2f4;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Resin container styling */
+.resin-container {
+    border: 2px solid #6a994e;
+}
+
+/* FDM container styling */
+.fdm-container {
+    border: 2px solid #4ea8de;
+}
+
+/* Button grid layout */
+.calculator-container .button-grid {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Buttons */
+.calculator-container .btn {
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.calculator-container .btn-primary {
+    background-color: #6a994e;
+    color: white;
+}
+
+.calculator-container .btn-primary:hover {
+    background-color: #5c8a41;
+    transform: translateY(-2px);
+}
+
+.calculator-container .btn-secondary {
+    background-color: #4ea8de;
+    color: white;
+}
+
+.calculator-container .btn-secondary:hover {
+    background-color: #468cba;
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+    .calculator-group {
+        padding: 10px;
+    }
+
+    .button-grid {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

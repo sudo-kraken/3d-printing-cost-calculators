@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple FDM Calculator</title>
+    <link rel="icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/fdm_simple.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="/static/logo.png" alt="Logo" class="logo">
+            <h1>Simple FDM Calculator</h1>
+        </header>
+        <div class="button-group">
+            <a href="/" class="btn-dark">Back to Main Page</a>
+            <a href="/fdm-calculator" class="btn-secondary">Switch to Advanced Tool</a>
+        </div>
+
+        <!-- Inputs Card -->
+        <div class="form-card">
+            <h2 class="card-title">Inputs</h2>
+            <form id="fdm-simple-calculator-form">
+                <div class="form-row">
+                    <div class="form-section">
+                        <label for="simple_filament_cost_per_kg">Filament Cost (£/kg):</label>
+                        <input type="number" id="simple_filament_cost_per_kg" step="0.01" placeholder="25.00" required>
+                        <label for="simple_filament_g_per_model">Filament Usage (g/model):</label>
+                        <input type="number" id="simple_filament_g_per_model" step="0.01" placeholder="100" required>
+                        <label for="simple_filament_waste_factor">Filament Waste Factor (%):</label>
+                        <input type="number" id="simple_filament_waste_factor" step="0.1" placeholder="10" required>
+                    </div>
+                    <div class="form-section">
+                        <label for="simple_electricity_cost_kwh">Electricity Cost (£/kWh):</label>
+                        <input type="number" id="simple_electricity_cost_kwh" step="0.01" placeholder="0.40" required>
+                        <label for="simple_printer_wattage">Printer Wattage (W):</label>
+                        <input type="number" id="simple_printer_wattage" step="1" placeholder="250" required>
+                        <label for="simple_print_time_hours">Print Time (hours):</label>
+                        <input type="number" id="simple_print_time_hours" step="0.01" placeholder="4" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-calculate">Calculate</button>
+            </form>            
+        </div>
+
+        <!-- Results Card -->
+        <div class="form-card">
+            <h2 class="card-title">Results</h2>
+            <div class="result-card">
+                <div class="result-card-entry">
+                    <label title="Total Filament Cost = Filament Usage × Filament Cost per Kilogram">Total Filament Cost:</label>
+                    <span id="result-filament-cost" title="Total Filament Cost = Filament Usage × Filament Cost per Kilogram">£0.00</span>
+                </div>
+                <div class="result-card-entry">
+                    <label title="Electricity Cost = kWh Used × Cost per kWh">Electricity Cost:</label>
+                    <span id="result-electricity-cost" title="Electricity Cost = kWh Used × Cost per kWh">£0.00</span>
+                </div>
+                <div class="result-card-entry">
+                    <label title="kWh Used = (Printer Wattage × Print Time in Hours) / 1000">kWh Used:</label>
+                    <span id="result-kwh-used" title="kWh Used = (Printer Wattage × Print Time in Hours) / 1000">0.00 kWh</span>
+                </div>
+                <div class="result-card-entry">
+                    <label title="Total Cost = Sum of all individual costs (Filament, Electricity, etc.)">
+                        <strong>Total Cost:</strong>
+                    </label>
+                    <span id="result-total-cost" title="Total Cost = Sum of all individual costs (Filament, Electricity, etc.)">£0.00</span>
+                </div>
+            </div>
+        </div>        
+    </div>
+</body>
+</html>
