@@ -27,7 +27,7 @@ jobs:
 
       - name: Build Docker Image with Podman
         run: |
-          podman build -t ghcr.io/${{ github.actor }}/3d-print-calculator:latest .
+          podman build --arch arm64 -t ghcr.io/${{ github.actor }}/3d-print-calculator:latest .
 
       - name: Push Docker Image to GitHub Container Registry
         run: |
