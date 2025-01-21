@@ -1,0 +1,31 @@
+name: Build and Push Podman Image ARM64
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Podman
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install podman buildah qemu-user-static
+
+      - name: Authenticate with GitHub Container Registry
+        run: |
+          echo "${{ secrets.GHCR_PAT }}" | podman login ghcr.io --username "${{ github.actor }}" --password-stdin
+          
+      - name: Build and Push Docker Image (AMD64)
+        run: |
+          podman build --arch arm64 -t ghcr.io/${{ github.actor }}/3d-print-calculators:latest-arm64 .
+          podman push ghcr.io/${{ github.actor }}/3d-print-calculators:latest
