@@ -34,5 +34,5 @@ jobs:
         run: |
           podman buildx build \
             --platform linux/amd64,linux/arm64 \
-            -t ghcr.io/${{ github.actor }}/pushover-webhook:latest \
+            -t ghcr.io/${{ github.actor }}/3d-print-calculators:latest \
             --push .
