@@ -19,16 +19,20 @@ jobs:
       - name: Set up Podman
         run: |
           sudo apt-get update
-          sudo apt-get -y install podman
+          sudo apt-get -y install podman buildah qemu-user-static
 
       - name: Authenticate with GitHub Container Registry
         run: |
           echo "${{ secrets.GHCR_PAT }}" | podman login ghcr.io --username "${{ github.actor }}" --password-stdin
 
-      - name: Build Docker Image with Podman
+      - name: Enable Buildx for Multi-Platform Builds
         run: |
-          podman build --arch arm64 -t ghcr.io/${{ github.actor }}/3d-print-calculator:latest .
-
-      - name: Push Docker Image to GitHub Container Registry
+          podman buildx create --use
+          podman buildx inspect --bootstrap
+          
+      - name: Build and Push Multi-Platform Docker Image
         run: |
-          podman push ghcr.io/${{ github.actor }}/3d-print-calculator:latest
+          podman buildx build \
+            --platform linux/amd64,linux/arm64 \
+            -t ghcr.io/${{ github.actor }}/pushover-webhook:latest \
+            --push .
