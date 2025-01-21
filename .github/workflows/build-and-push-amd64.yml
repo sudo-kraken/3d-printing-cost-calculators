@@ -1,4 +1,4 @@
-name: Build and Push Podman Image
+name: Build and Push Podman Image AMD64
 
 on:
   push:
@@ -24,15 +24,8 @@ jobs:
       - name: Authenticate with GitHub Container Registry
         run: |
           echo "${{ secrets.GHCR_PAT }}" | podman login ghcr.io --username "${{ github.actor }}" --password-stdin
-
-      - name: Enable Buildx for Multi-Platform Builds
-        run: |
-          podman buildx create --use
-          podman buildx inspect --bootstrap
           
-      - name: Build and Push Multi-Platform Docker Image
+      - name: Build and Push Docker Image (AMD64)
         run: |
-          podman buildx build \
-            --platform linux/amd64,linux/arm64 \
-            -t ghcr.io/${{ github.actor }}/3d-print-calculators:latest \
-            --push .
+          podman build --arch amd64 -t ghcr.io/${{ github.actor }}/pushover-webhook:latest .
+          podman push ghcr.io/${{ github.actor }}/3d-print-calculators:latest
