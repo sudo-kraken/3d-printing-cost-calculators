@@ -1,0 +1,4 @@
+# Disable Dependabot version updates - using Renovate instead
+# Keep Dependabot security alerts enabled in repository settings
+version: 2
+updates: []
