@@ -12,7 +12,6 @@ on:
         required: false
         default: "false"
         type: string
-  # Run twice in the early morning for initial and follow up steps
   schedule:
     - cron: '30 4,6 * * *'
   push:
@@ -29,14 +28,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Don't waste time starting Renovate if JSON is invalid
       - name: Validate Renovate JSON
         run: jq type .github/renovate.json
 
       - name: Self-hosted Renovate
-        uses: renovatebot/github-action@v43
+        uses: renovatebot/github-action@2d941ef4e268e53affdc1f11365c69a73e544f50 # v43.0.14
         env:
-          # Override schedule if set
+
           RENOVATE_FORCE: ${{ github.event.inputs.overrideSchedule == 'true' && '{''schedule'':null}' || '' }}
           LOG_LEVEL: ${{ inputs.logLevel || 'info' }}
         with:
