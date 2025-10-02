@@ -1,0 +1,21 @@
+name: Renovate
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * *'
+  push:
+    paths:
+      - '.github/workflows/renovate.yml'
+      - 'renovate.json'
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Self-hosted Renovate
+        uses: renovatebot/github-action@v43
+        with:
+          token: ${{ secrets.GHCR_PAT }}
