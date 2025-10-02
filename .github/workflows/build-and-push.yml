@@ -30,9 +30,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Deterministic timestamp
+      - name: Commit timestamp
         id: ts
-        run: echo "now=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_OUTPUT"
+        run: echo "TIMESTAMP=$(git log -1 --pretty=%ct)" >> "$GITHUB_OUTPUT"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -59,9 +59,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Deterministic timestamp
+      - name: Commit timestamp
         id: ts
-        run: echo "now=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_OUTPUT"
+        run: echo "TIMESTAMP=$(git log -1 --pretty=%ct)" >> "$GITHUB_OUTPUT"
 
       - name: Set up QEMU (enable ARM emulation)
         uses: docker/setup-qemu-action@v3
@@ -76,6 +76,19 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_PAT }}
 
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            ${{ github.repository }}
+            ghcr.io/${{ github.repository }}
+          tags: |
+            type=raw,value=develop
+            type=sha
+          labels: |
+            org.opencontainers.image.created=${{ steps.ts.outputs.TIMESTAMP }}          
+
       - name: Build & push (multi-arch)
         uses: docker/build-push-action@v6
         with:
@@ -84,14 +97,9 @@ jobs:
           push: true
           build-args: |
             COMMIT_SHA=${{ github.sha }}
-            BUILD_DATE=${{ steps.ts.outputs.now }}
-          labels: |
-            org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
-            org.opencontainers.image.revision=${{ github.sha }}
-            org.opencontainers.image.created=${{ steps.ts.outputs.now }}
-          tags: |
-            ghcr.io/${{ github.actor }}/3d-print-calculators:latest
-            ghcr.io/${{ github.actor }}/3d-print-calculators:${{ github.sha }}
+            BUILD_DATE=${{ steps.ts.outputs.TIMESTAMP }}
+          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}
           cache-from: |
             type=gha,scope=linux/amd64
             type=gha,scope=linux/arm64
