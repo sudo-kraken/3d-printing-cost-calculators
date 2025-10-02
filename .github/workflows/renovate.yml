@@ -1,12 +1,26 @@
 name: Renovate
 on:
   workflow_dispatch:
+    inputs:
+      logLevel:
+        description: "Override default log level"
+        required: false
+        default: "info"
+        type: string
+      overrideSchedule:
+        description: "Override all schedules"
+        required: false
+        default: "false"
+        type: string
+  # Run twice in the early morning for initial and follow up steps
   schedule:
-    - cron: '0 2 * * *'
+    - cron: '30 4,6 * * *'
   push:
     paths:
       - '.github/workflows/renovate.yml'
-      - 'renovate.json'
+      - '.github/renovate.json'
+
+concurrency: renovate
 
 jobs:
   renovate:
@@ -15,7 +29,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Don't waste time starting Renovate if JSON is invalid
+      - name: Validate Renovate JSON
+        run: jq type .github/renovate.json
+
       - name: Self-hosted Renovate
         uses: renovatebot/github-action@v43
+        env:
+          # Override schedule if set
+          RENOVATE_FORCE: ${{ github.event.inputs.overrideSchedule == 'true' && '{''schedule'':null}' || '' }}
+          LOG_LEVEL: ${{ inputs.logLevel || 'info' }}
         with:
+          configurationFile: .github/renovate.json
           token: ${{ secrets.GHCR_PAT }}
