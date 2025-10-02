@@ -6,7 +6,7 @@
   "schedule": ["every weekend"],
   "prHourlyLimit": 2,
   "prConcurrentLimit": 5,
-  "baseBranches": ["main"],
+  "baseBranchPatterns": ["main"],
   "rebaseWhen": "conflicted",
   "labels": ["dependencies"],
   "automergeStrategy": "merge-commit",
