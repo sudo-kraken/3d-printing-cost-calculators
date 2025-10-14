@@ -13,7 +13,7 @@ COPY pyproject.toml uv.lock ./
 
 RUN uv sync --frozen --no-dev --no-install-project
 
-COPY app /app
+COPY app ./app
 
 ENV PORT=6969
 
