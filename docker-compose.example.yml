@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  3d-printing-cost-calculators:
+    image: ghcr.io/sudo-kraken/3d-printing-cost-calculators:latest
+    # build: .  # enable this to build locally instead of using a registry image
+    environment:
+      # Branding
+      - APP_BRAND_NAME=
+      - APP_LOGO_URL=
+      - APP_FAVICON_URL=
+      # Server
+      - PORT=
+      # Business policy
+      - APP_DEFAULT_PROFIT_MARGIN=
+    ports:
+      - "6969:6969"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:6969/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped

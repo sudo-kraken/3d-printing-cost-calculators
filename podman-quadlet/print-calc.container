@@ -1,5 +1,5 @@
 [Unit]
-Description=Print Calculator Quadlet
+Description=Print Calculators Quadlet
 
 [Service]
 Restart=on-failure
@@ -9,8 +9,18 @@ TimeoutStartSec=900
 WantedBy=default.target
 
 [Container]
-Image=localhost/print-calc:latest
-ContainerName=print-calc
-HostName=print-calc
+Image=ghcr.io/sudo-kraken/3d-print-calcs:latest
+Pull=newer
+ContainerName=print-calcs
+HostName=print-calcs
 
 PublishPort=6969:6969
+
+# Branding
+Environment=APP_BRAND_NAME=
+Environment=APP_LOGO_URL=
+Environment=APP_FAVICON_URL=
+      # Server
+Environment=PORT=
+# Business policy
+Environment=APP_DEFAULT_PROFIT_MARGIN=

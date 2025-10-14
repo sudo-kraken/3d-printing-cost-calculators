@@ -1,21 +1,21 @@
 def calculate_fdm_cost(data):
     try:
         # Extract input values
-        filament_cost_per_kg = float(data['filament_cost_per_kg'])
-        filament_g_per_model = float(data['filament_g_per_model'])
-        filament_waste_factor = float(data['filament_waste_factor']) / 100.0
-        labour_cost_ph = float(data['labour_cost_ph'])
-        setup_labour_mins = float(data['setup_labour_mins'])
-        finishing_labour_mins = float(data['finishing_labour_mins'])
-        electricity_cost_kwh = float(data['electricity_cost_kwh'])
-        printer_wattage = float(data['printer_wattage'])
-        print_time_hours = float(data['print_time_hours'])
-        packaging_cost = float(data['packaging_cost'])
-        shipping_cost = float(data['shipping_cost'])
-        batch_size = int(data['batch_size'])
-        failure_rate = float(data['failure_rate']) / 100.0
-        occupancy_charge_per_hour = float(data['occupancy_charge_per_hour'])
-        profit_margin = float(data['profit_margin']) / 100.0
+        filament_cost_per_kg = float(data["filament_cost_per_kg"])
+        filament_g_per_model = float(data["filament_g_per_model"])
+        filament_waste_factor = float(data["filament_waste_factor"]) / 100.0
+        labour_cost_ph = float(data["labour_cost_ph"])
+        setup_labour_mins = float(data["setup_labour_mins"])
+        finishing_labour_mins = float(data["finishing_labour_mins"])
+        electricity_cost_kwh = float(data["electricity_cost_kwh"])
+        printer_wattage = float(data["printer_wattage"])
+        print_time_hours = float(data["print_time_hours"])
+        packaging_cost = float(data["packaging_cost"])
+        shipping_cost = float(data["shipping_cost"])
+        batch_size = int(data["batch_size"])
+        failure_rate = float(data["failure_rate"]) / 100.0
+        occupancy_charge_per_hour = float(data["occupancy_charge_per_hour"])
+        profit_margin = float(data["profit_margin"]) / 100.0
 
         # Calculations
         filament_cost_per_g = filament_cost_per_kg / 1000.0

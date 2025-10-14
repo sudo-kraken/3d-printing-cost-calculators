@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filament Print Calculator</title>
-    <link rel="icon" href="/static/favicon.ico">
+    <title>{{ brand_name }} - Filament Print Calculator</title>
+    <link rel="icon" href="{{ favicon_url }}">
     <link rel="stylesheet" href="/static/style.css">
     <script src="/static/fdm_calculator.js" defer></script>
 </head>
 <body>
     <div class="container">
         <header>
-            <img src="/static/logo.png" alt="Logo" class="logo">
+            <img src="{{ logo_url }}" alt="{{ brand_name }} Logo" class="logo">
             <h1>Filament Print Calculator</h1>
         </header>
         <div class="button-group">
@@ -36,7 +36,7 @@
                     <div class="form-section">
                         <h3>Labour Costs</h3>
                         <label for="labour_cost_ph">Labour Cost (£/hr):</label>
-                        <input type="number" id="labour_cost_ph" step="0.01" placeholder="20" required>
+                        <input type="number" id="labour_cost_ph" step="0.01" placeholder="15" required>
                         <label for="setup_labour_mins">Setup Labour (mins):</label>
                         <input type="number" id="setup_labour_mins" step="1" placeholder="5" required>
                         <label for="finishing_labour_mins">Finishing Labour (mins/model):</label>
@@ -47,7 +47,7 @@
                         <label for="electricity_cost_kwh">Electricity Cost (£/kWh):</label>
                         <input type="number" id="electricity_cost_kwh" step="0.01" placeholder="0.40" required>
                         <label for="printer_wattage">Printer Wattage (W):</label>
-                        <input type="number" id="printer_wattage" step="1" placeholder="250" required>
+                        <input type="number" id="printer_wattage" step="1" placeholder="350" required>
                         <label for="print_time_hours">Print Time (hours):</label>
                         <input type="number" id="print_time_hours" step="0.01" placeholder="4" required>
                     </div>
@@ -58,7 +58,7 @@
                         <label for="packaging_cost">Packaging Cost (£/model):</label>
                         <input type="number" id="packaging_cost" step="0.01" placeholder="0.30" required>
                         <label for="shipping_cost">Shipping Cost (£/model):</label>
-                        <input type="number" id="shipping_cost" step="0.01" placeholder="2.00" required>
+                        <input type="number" id="shipping_cost" step="0.01" placeholder="3.50" required>
                     </div>
                     <div class="form-section">
                         <h3>Batch Info</h3>
@@ -111,7 +111,7 @@
                     <span id="result-occupancy-cost" title="Printer Occupancy Charge = Occupancy Charge per Hour × Print Time in Hours">£0.00</span>
                 </div>
             </div>
-            
+
             <!-- Pre Profit and Post Profit on the same row -->
             <div class="result-row">
                 <div class="result-card">
@@ -144,7 +144,7 @@
                         <span id="result-post-profit-model" title="Post Profit Cost per Model = Post Profit Total Batch Cost ÷ Number of Sellable Models">£0.00</span>
                     </div>
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
 </body>

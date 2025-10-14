@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resin Simple Calculator</title>
-    <link rel="icon" href="/static/favicon.ico">
+    <title>{{ brand_name }} - Resin Simple Calculator</title>
+    <link rel="icon" href="{{ favicon_url }}">
     <link rel="stylesheet" href="/static/style.css">
     <script src="/static/resin_simple.js" defer></script>
 </head>
 <body>
     <div class="container">
         <header>
-            <img src="/static/logo.png" alt="Logo" class="logo">
+            <img src="{{ logo_url }}" alt="{{ brand_name }} Logo" class="logo">
             <h1>Resin Simple Calculator</h1>
         </header>
         <div class="button-group">
@@ -26,7 +26,7 @@
                 <div class="form-row">
                     <div class="form-section">
                         <label for="simple_resin_cost_per_l">Resin Cost (£/L):</label>
-                        <input type="number" id="simple_resin_cost_per_l" step="0.01" placeholder="32.39" required>
+                        <input type="number" id="simple_resin_cost_per_l" step="0.01" placeholder="50.00" required>
                         <label for="simple_resin_ml_per_model">Resin Usage (ml/model):</label>
                         <input type="number" id="simple_resin_ml_per_model" step="0.01" placeholder="100" required>
                         <label for="simple_resin_waste_factor">Resin Waste Factor (%):</label>
@@ -36,13 +36,13 @@
                         <label for="simple_electricity_cost_kwh">Electricity Cost (£/kWh):</label>
                         <input type="number" id="simple_electricity_cost_kwh" step="0.01" placeholder="0.40" required>
                         <label for="simple_printer_wattage">Printer Wattage (W):</label>
-                        <input type="number" id="simple_printer_wattage" step="1" placeholder="250" required>
+                        <input type="number" id="simple_printer_wattage" step="1" placeholder="350" required>
                         <label for="simple_print_time_hours">Print Time (hours):</label>
                         <input type="number" id="simple_print_time_hours" step="0.01" placeholder="4" required>
                     </div>
                 </div>
                 <button type="submit" class="btn-calculate">Calculate</button>
-            </form>            
+            </form>
         </div>
 
         <!-- Results Card -->
@@ -68,7 +68,7 @@
                     <span id="result-total-cost" title="Total Cost = Sum of all individual costs (Resin, Electricity, Labour, Postage, etc.)">£0.00</span>
                 </div>
             </div>
-        </div>        
+        </div>
     </div>
 </body>
 </html>
