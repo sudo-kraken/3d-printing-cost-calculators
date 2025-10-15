@@ -1,8 +1,10 @@
 import os
-from flask import Flask, render_template, request, jsonify
-from .resin_calculator import calculate_resin_cost
-from .fdm_calculator import calculate_fdm_cost
+
+from flask import Flask, jsonify, render_template, request
+
 from .config import apply_profit_default
+from .fdm_calculator import calculate_fdm_cost
+from .resin_calculator import calculate_resin_cost
 
 app = Flask(__name__)
 

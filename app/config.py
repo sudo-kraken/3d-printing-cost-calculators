@@ -1,5 +1,5 @@
 import os
-from typing import Any, Dict, Optional
+from typing import Any
 
 
 def _get_float(name: str, default: float) -> float:
@@ -20,8 +20,8 @@ def _coerce_number(value: Any) -> Any:
     return value
 
 
-def apply_profit_default(incoming: Optional[Dict[str, Any]]) -> Dict[str, Any]:
-    data: Dict[str, Any] = {} if incoming is None else dict(incoming)
+def apply_profit_default(incoming: dict[str, Any] | None) -> dict[str, Any]:
+    data: dict[str, Any] = {} if incoming is None else dict(incoming)
     if "profit_margin" not in data or data["profit_margin"] in (None, ""):
         data["profit_margin"] = _get_float("APP_DEFAULT_PROFIT_MARGIN", 20.0)
     else:

@@ -41,7 +41,6 @@ def calculate_resin_cost(data):
 
         sellable_models = max(1, batch_size - int(batch_size * failure_rate))
         cost_per_model = total_batch_cost / sellable_models
-        final_price = cost_per_model * (1 + profit_margin)
 
         return {
             "success": True,
@@ -58,4 +57,4 @@ def calculate_resin_cost(data):
         }
 
     except Exception as e:
-        raise ValueError(f"Error in resin cost calculation: {e}")
+        raise ValueError(f"Error in resin cost calculation: {e}") from e
