@@ -1,31 +1,57 @@
 # 3D Print Calculators
 
-Flask application that provides cost calculators for resin and FDM 3D printing. Managed with uv and container friendly.
+A small Flask application that provides cost calculators for resin and FDM 3D printing. Built with uv for reproducible Python environments and designed to run locally or in a container.
 
-## Features
-- Resin and FDM cost calculators with simple and advanced views
-- Configurable branding, logo and favicon
-- Single business control for default profit margin
-- `/health` endpoint for liveness checks
-- Tests with pytest and coverage
-- Works with uv locally or Docker
+## Overview
 
-## Requirements
-- Python 3.13 with [uv](https://docs.astral.sh/uv/)
-- Docker optional
+This service exposes simple web pages to calculate material and job costs for resin and FDM 3D prints. It includes a basic health endpoint for orchestration systems and uses a plain Flask entrypoint that works with Flask's dev server or Gunicorn in production.
 
-## Quick start with uv
+## Architecture at a glance
+
+- Flask app factory with a top level `app:app` WSGI target
+- Stateless HTTP endpoints and HTML templates
+- Optional branding via environment variables
+- Health endpoint `GET /health` for liveness checks
+
+## Prerequisites
+
+- [Docker](https://www.docker.com/)
+- (Alternatively) [uv](https://docs.astral.sh/uv/) and Python 3.13 for local development
+
+## Quick start
+
+Local development with uv
+
 ```bash
 uv sync --all-extras
 uv run flask --app app:app run --host 0.0.0.0 --port ${PORT:-6969}
-# or Gunicorn
-uv run --no-dev gunicorn -w ${WEB_CONCURRENCY:-2} -b 0.0.0.0:${PORT:-6969} app:app
 ```
 
 ## Docker
+
+Pull and run
+
 ```bash
-docker run --rm -e PORT=6969 -p 6969:6969 ghcr.io/sudo-kraken/3d-printing-cost-calculators:latest
-# For compose use see the repo example
+docker pull ghcr.io/sudo-kraken/3d-printing-cost-calculators:latest
+docker run --rm -p 6969:6969   -e PORT=6969   ghcr.io/sudo-kraken/3d-printing-cost-calculators:latest
+```
+
+Docker Compose example
+
+```yaml
+services:
+  calculators:
+    image: ghcr.io/sudo-kraken/3d-printing-cost-calculators:latest
+    environment:
+      PORT: 6969
+      WEB_CONCURRENCY: 2
+    ports:
+      - "6969:6969"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:6969/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
 ```
 
 ## Configuration
@@ -33,38 +59,50 @@ docker run --rm -e PORT=6969 -p 6969:6969 ghcr.io/sudo-kraken/3d-printing-cost-c
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
 | PORT | no | 6969 | Port to bind |
-| WEB_CONCURRENCY | no | 2 | Gunicorn workers |
-| APP_BRAND_NAME | no |  | Branding in templates |
-| APP_LOGO_URL | no |  | Logo used in templates |
-| APP_FAVICON_URL | no |  | Favicon |
-| APP_DEFAULT_PROFIT_MARGIN | no |  | Default profit margin percent |
+| WEB_CONCURRENCY | no | 2 | Gunicorn worker processes |
+| APP_BRAND_NAME | no |  | Branding string used in templates |
+| APP_LOGO_URL | no |  | Logo URL used in templates |
+| APP_FAVICON_URL | no |  | Favicon URL |
+| APP_DEFAULT_PROFIT_MARGIN | no |  | Default profit margin percentage |
 
-## Health and readiness
-- `GET /health` returns `{ "ok": true }`.
+`.env` example
+
+```dotenv
+PORT=6969
+WEB_CONCURRENCY=2
+APP_BRAND_NAME="My Print Shop"
+APP_DEFAULT_PROFIT_MARGIN=20
+```
+
+## Health
+
+- `GET /health` returns `{ "ok": true }`
 
 ## Endpoints
-- `GET /` index
-- `GET /resin-calculator`, `GET /resin-simple`
-- `GET /fdm-calculator`, `GET /fdm-simple`
-- `POST /calculate-resin` and `POST /calculate-fdm`
 
-## Project layout
-```
-3d-printing-cost-calculators/
-  app/
-  templates/
-  static/
-  Dockerfile
-  pyproject.toml
-  tests/
-```
+- `GET /` home
+- `GET /resin-calculator` and `GET /resin-simple`
+- `GET /fdm-calculator` and `GET /fdm-simple`
+- `POST /calculate-resin`
+- `POST /calculate-fdm`
+
+## Production notes
+
+- Prefer Gunicorn with multiple workers for CPU bound tasks. For simple IO bound routes the default of 2 workers is fine.
+- Expose the `/health` endpoint to your load balancer or orchestrator for liveness checks.
 
 ## Development
+
 ```bash
 uv run ruff check --fix .
 uv run ruff format .
 uv run pytest --cov
 ```
+
+## Troubleshooting
+
+- If templates fail to load, ensure the `templates/` and `static/` folders are included in the container image.
+- If you change dependencies, regenerate `uv.lock` with `uv lock` and commit it.
 
 ## Licence
 See [LICENSE](LICENSE)
@@ -73,6 +111,7 @@ See [LICENSE](LICENSE)
 See [SECURITY.md](SECURITY.md)
 
 ## Contributing
+Feel free to open issues or submit pull requests if you have suggestions or improvements.
 See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Support
