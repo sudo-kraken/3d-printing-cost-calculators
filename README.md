@@ -13,6 +13,16 @@ This service exposes simple web pages to calculate material and job costs for re
 - Optional branding via environment variables
 - Health endpoint `GET /health` for liveness checks
 
+## Features
+
+- Resin and FDM cost calculators with simple and advanced views
+- Configurable branding, logo and favicon
+- Single business control for default profit margin
+- Clean `app:app` entrypoint compatible with Flask and Gunicorn
+- `/health` endpoint for liveness checks
+- Reproducible local development with uv
+- Ready to run via a prebuilt container image
+
 ## Prerequisites
 
 - [Docker](https://www.docker.com/)
@@ -33,7 +43,9 @@ Pull and run
 
 ```bash
 docker pull ghcr.io/sudo-kraken/3d-printing-cost-calculators:latest
-docker run --rm -p 6969:6969   -e PORT=6969   ghcr.io/sudo-kraken/3d-printing-cost-calculators:latest
+docker run --rm -p 6969:6969 \
+  -e PORT=6969 \
+  ghcr.io/sudo-kraken/3d-printing-cost-calculators:latest
 ```
 
 Docker Compose example
