@@ -24,8 +24,8 @@ uv run --no-dev gunicorn -w ${WEB_CONCURRENCY:-2} -b 0.0.0.0:${PORT:-6969} app:a
 
 ## Docker
 ```bash
-docker build -t 3d-printing-cost-calculators .
-docker run --rm -e PORT=6969 -p 6969:6969 3d-printing-cost-calculators
+docker run --rm -e PORT=6969 -p 6969:6969 ghcr.io/sudo-kraken/3d-printing-cost-calculators:latest
+# For compose use see the repo example
 ```
 
 ## Configuration
