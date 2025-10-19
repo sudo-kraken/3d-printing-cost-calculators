@@ -1,6 +1,22 @@
-# 3D Print Calculators
+<div align="center">
+<img src="https://raw.githubusercontent.com/sudo-kraken//3d-printing-cost-calculators/main/docs/assets/logo.png" align="center" width="144px" height="144px"/>
 
-A small Flask application that provides cost calculators for resin and FDM 3D printing. Built with uv for reproducible Python environments and designed to run locally or in a container.
+### 3D Print Cost Calculators
+
+_A small Flask application that provides cost calculators for resin and FDM 3D printing. Built with uv for reproducible Python environments and designed to run locally or in a container_
+
+</div>
+
+<div align="center">
+
+[![Docker](https://img.shields.io/github/v/tag/sudo-kraken/3d-printing-cost-calculators?label=docker&logo=docker&style=for-the-badge)](https://github.com/sudo-kraken//3d-printing-cost-calculators/pkgs/container//3d-printing-cost-calculators) [![Python](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fsudo-kraken%2F/3d-printing-cost-calculators%2Fmain%2Fpyproject.toml&logo=python&logoColor=yellow&color=3776AB&style=for-the-badge)](https://github.com/sudo-kraken/3d-printing-cost-calculators/blob/main/pyproject.toml)
+</div>
+
+<div align="center">
+
+[![OpenSSF Scorecard](https://img.shields.io/ossf-scorecard/github.com/sudo-kraken/3d-printing-cost-calculators?label=openssf%20scorecard&style=for-the-badge)](https://scorecard.dev/viewer/?uri=github.com/sudo-kraken/3d-printing-cost-calculators)
+
+</div>
 
 ## Overview
 
