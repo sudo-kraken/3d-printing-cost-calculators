@@ -1,10 +1,9 @@
 <div align="center">
-<img src="https://raw.githubusercontent.com/sudo-kraken//3d-printing-cost-calculators/main/docs/assets/logo.png" align="center" width="144px" height="144px"/>
+<img src="docs/assets/logo.png" align="center" width="144px" height="144px"/>
 
 ### 3D Print Cost Calculators
 
-_A small Flask application that provides cost calculators for resin and FDM 3D printing. Built with uv for reproducible Python environments and designed to run locally or in a container_
-
+_A small Flask application that provides cost calculators for resin and FDM 3D printing. Built with uv for reproducible Python environments and designed to run locally or in a container._
 </div>
 
 <div align="center">
@@ -18,9 +17,28 @@ _A small Flask application that provides cost calculators for resin and FDM 3D p
 
 </div>
 
+## Contents
+
+- [Overview](#overview)
+- [Architecture at a glance](#architecture-at-a-glance)
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Quick start](#quick-start)
+- [Docker](#docker)
+- [Configuration](#configuration)
+- [Health](#health)
+- [Endpoints](#endpoints)
+- [Production notes](#production-notes)
+- [Development](#development)
+- [Troubleshooting](#troubleshooting)
+- [Licence](#licence)
+- [Security](#security)
+- [Contributing](#contributing)
+- [Support](#support)
+
 ## Overview
 
-This service exposes simple web pages to calculate material and job costs for resin and FDM 3D prints. It includes a basic health endpoint for orchestration systems and uses a plain Flask entrypoint that works with Flask's dev server or Gunicorn in production.
+This service exposes simple web pages to calculate material and job costs for resin and FDM 3D prints. It includes a basic health endpoint for orchestration systems and uses a plain Flask entry point that works with Flask’s dev server or Gunicorn in production.
 
 ## Architecture at a glance
 
@@ -34,7 +52,7 @@ This service exposes simple web pages to calculate material and job costs for re
 - Resin and FDM cost calculators with simple and advanced views
 - Configurable branding, logo and favicon
 - Single business control for default profit margin
-- Clean `app:app` entrypoint compatible with Flask and Gunicorn
+- Clean `app:app` entry point compatible with Flask and Gunicorn
 - `/health` endpoint for liveness checks
 - Reproducible local development with uv
 - Ready to run via a prebuilt container image
@@ -42,7 +60,7 @@ This service exposes simple web pages to calculate material and job costs for re
 ## Prerequisites
 
 - [Docker](https://www.docker.com/)
-- (Alternatively) [uv](https://docs.astral.sh/uv/) and Python 3.13 for local development
+- Alternatively [uv](https://docs.astral.sh/uv/) and Python 3.13 for local development
 
 ## Quick start
 
@@ -133,14 +151,18 @@ uv run pytest --cov
 - If you change dependencies, regenerate `uv.lock` with `uv lock` and commit it.
 
 ## Licence
-See [LICENSE](LICENSE)
+
+This project is licensed under the MIT Licence. See the [LICENCE](LICENCE) file for details.
 
 ## Security
-See [SECURITY.md](SECURITY.md)
+
+If you discover a security issue, please review and follow the guidance in [SECURITY.md](SECURITY.md), or open a private security-focused issue with minimal details and request a secure contact channel.
 
 ## Contributing
-Feel free to open issues or submit pull requests if you have suggestions or improvements.
+
+Feel free to open issues or submit pull requests if you have suggestions or improvements.  
 See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Support
-Open an [issue](/../../issues)
+
+Open an [issue](/../../issues) with as much detail as possible, including your environment details and relevant logs or output.
