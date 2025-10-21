@@ -59,7 +59,7 @@ This service exposes simple web pages to calculate material and job costs for re
 
 ## Prerequisites
 
-- [Docker](https://www.docker.com/)
+- [Docker](https://www.docker.com/) / [Kubernetes](https://kubernetes.io/)
 - Alternatively [uv](https://docs.astral.sh/uv/) and Python 3.13 for local development
 
 ## Quick start
@@ -80,6 +80,14 @@ docker pull ghcr.io/sudo-kraken/3d-printing-cost-calculators:latest
 docker run --rm -p 6969:6969 \
   -e PORT=6969 \
   ghcr.io/sudo-kraken/3d-printing-cost-calculators:latest
+```
+## Kubernetes (Helm)
+
+You can deploy the app on Kubernetes using the published Helm chart:
+
+```bash
+helm install 3d-printing-cost-calculators oci://ghcr.io/sudo-kraken/helm-charts/3d-printing-cost-calculators \
+  --namespace 3d-printing-cost-calculators --create-namespace
 ```
 
 Docker Compose example
