@@ -17,6 +17,13 @@ _A small Flask application that provides cost calculators for resin and FDM 3D p
 
 </div>
 
+## Demo
+<div align="center">
+  
+![Demo](docs/assets/preview.gif)  
+*Animation shows the basic functionality of the application*
+</div>
+
 ## Contents
 
 - [Overview](#overview)
