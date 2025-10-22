@@ -8,7 +8,7 @@ _A small Flask application that provides cost calculators for resin and FDM 3D p
 
 <div align="center">
 
-[![Docker](https://img.shields.io/github/v/tag/sudo-kraken/3d-printing-cost-calculators?label=docker&logo=docker&style=for-the-badge)](https://github.com/sudo-kraken//3d-printing-cost-calculators/pkgs/container//3d-printing-cost-calculators) [![Python](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fsudo-kraken%2F/3d-printing-cost-calculators%2Fmain%2Fpyproject.toml&logo=python&logoColor=yellow&color=3776AB&style=for-the-badge)](https://github.com/sudo-kraken/3d-printing-cost-calculators/blob/main/pyproject.toml)
+[![Docker](https://img.shields.io/github/v/tag/sudo-kraken/3d-printing-cost-calculators?label=docker&logo=docker&style=for-the-badge)](https://github.com/sudo-kraken//3d-printing-cost-calculators/pkgs/container//3d-printing-cost-calculators) [![Helm](https://img.shields.io/badge/dynamic/yaml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsudo-kraken%2Fhelm-charts%2Frefs%2Fheads%2Fmain%2Fcharts%2F3d-printing-cost-calculators%2FChart.yaml&query=%24.version&label=&logo=helm&style=for-the-badge&logoColor=0F1487&color=white)](https://github.com/sudo-kraken/helm-charts/tree/main/charts/3d-printing-cost-calculators) [![Python](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fsudo-kraken%2F/3d-printing-cost-calculators%2Fmain%2Fpyproject.toml&logo=python&logoColor=yellow&color=3776AB&style=for-the-badge)](https://github.com/sudo-kraken/3d-printing-cost-calculators/blob/main/pyproject.toml)
 </div>
 
 <div align="center">
