@@ -1,4 +1,5 @@
 import pytest
+
 from app import app as flask_app  # import the Flask instance, not the submodule
 
 
